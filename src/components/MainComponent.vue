@@ -71,7 +71,9 @@ export default {
                         </p>
 
                         <p>voto: 
+
                             <font-awesome-icon v-for="x in getStarVote(singleMovie)" icon="fa-solid fa-star"/>
+                            
                             <font-awesome-icon v-for="y in (5 - getStarVote(singleMovie))" icon="fa-regular fa-star"/>
                             
                         </p>
