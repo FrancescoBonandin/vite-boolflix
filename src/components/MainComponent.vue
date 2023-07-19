@@ -59,6 +59,7 @@ export default {
                         <p>titolo originale:{{ singleMovie.original_title }} </p>
                         
                         <p>lingua:
+
                             <span v-if="singleMovie.original_language!=''">
                                 <CountryFlag :country="singleMovie.original_language=='en'? 'gb':singleMovie.original_language " size="small"/>
                             </span>
@@ -72,9 +73,9 @@ export default {
 
                         <p>voto: 
 
-                            <font-awesome-icon v-for="x in getStarVote(singleMovie)" icon="fa-solid fa-star"/>
-                            
-                            <font-awesome-icon v-for="y in (5 - getStarVote(singleMovie))" icon="fa-regular fa-star"/>
+                            <font-awesome-icon v-for="x in getStarVote(singleMovie)" icon="fa-solid fa-star" class="full-star-color" />
+
+                            <font-awesome-icon v-for="y in (5 - getStarVote(singleMovie))" icon="fa-regular fa-star" class="empty-star-color"  />
                             
                         </p>
                         
@@ -132,4 +133,11 @@ export default {
     }
 }
 
+.full-star-color{
+    color: gold;
+}
+
+.empty-star-color{
+    color: goldenrod;
+}
 </style>
