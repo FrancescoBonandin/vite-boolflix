@@ -29,8 +29,15 @@ export default {
       }
       )
       .then(res=>{
+
         this.store.searchResults.movies=res.data.results
+
         console.log(res)
+      })
+      .catch(err=>{
+        if(this.store.searchResults.movies.length==0){
+          this.store.searchResults.movies=[]
+        }
       })
   
     axios.get('https://api.themoviedb.org/3/search/tv',{
@@ -43,9 +50,16 @@ export default {
     }
     )
     .then(res=>{
+
       this.store.searchResults.tvSeries=res.data.results
+
       console.log(res)
     })
+    .catch(err=>{
+        if(this.store.searchResults.tvSeries.length==0){
+          this.store.searchResults.tvSeries=[]
+        }
+      })
         
     },
   }
