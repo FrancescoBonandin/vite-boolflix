@@ -32,9 +32,24 @@ export default {
         this.store.searchResults.movies=res.data.results
         console.log(res)
       })
+  
+    axios.get('https://api.themoviedb.org/3/search/tv',{
+
+      params:{
+        api_key:this.store.apiKey,
+        query:this.store.searchText,
+      }
+
     }
-  },
-};
+    )
+    .then(res=>{
+      this.store.searchResults.tvSeries=res.data.results
+      console.log(res)
+    })
+        
+    },
+  }
+}
 </script>
 
 <template>

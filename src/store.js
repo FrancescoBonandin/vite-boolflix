@@ -5,5 +5,6 @@ export const store = reactive({
     searchText:'',
     searchResults:{
         movies:[],
+        tvSeries:[],
     }
 })
