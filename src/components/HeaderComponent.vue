@@ -65,9 +65,9 @@ header{
     .logo{
         font-family:fantasy;
         color: red;
-        text-shadow: 2px 2px 1px rgba(255, 255, 255, 1),-2px -2px 1px rgba(255, 255, 255, 1),0px 2px 1px rgba(255, 255, 255, 1),
-                     2px -2px 1px rgba(255, 255, 255, 1),-2px 2px 1px rgba(255, 255, 255, 1),0px -2px 1px rgba(255, 255, 255, 1);
-        letter-spacing: 3px;
+        text-shadow: 1px 1px 1px rgba(255, 255, 255, 1),-1px -1px 1px rgba(255, 255, 255, 1),0px 1px 1px rgba(255, 255, 255, 1),
+                     1px -1px 1px rgba(255, 255, 255, 1),-1px 1px 1px rgba(255, 255, 255, 1),0px -1px 1px rgba(255, 255, 255, 1);
+        letter-spacing: 2px;
     }
 }
 </style>

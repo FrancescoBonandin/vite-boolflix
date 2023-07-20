@@ -62,6 +62,18 @@ export default {
       })
         
     },
+
+  
+  },
+  created(){
+
+    axios.get('https://api.themoviedb.org/3/genre/movie/list?api_key=ad9879a0909d7fd71a9675386cdfd2cc')
+        .then(res=>{
+
+          this.store.genresList=res.data.genres
+
+          console.log(this.store.genresList)
+        })
   }
 }
 </script>
@@ -80,4 +92,8 @@ export default {
 
 <style lang="scss">
 @use "assets/scss/main" as *;
+body{
+  background-color: rgba(15, 15, 15, 1.0);
+  min-height: 100vh;
+}
 </style>
