@@ -18,6 +18,7 @@ export default {
     };
   },
   methods: {
+    
     getResponse(){
       axios.get('https://api.themoviedb.org/3/search/movie',{
 
@@ -63,17 +64,23 @@ export default {
         
     },
 
-  
+    getGenresLists(){
+      for(let key in this.store.genresList){
+
+        axios.get(`https://api.themoviedb.org/3/genre/${key}/list?api_key=ad9879a0909d7fd71a9675386cdfd2cc`)
+            .then(res=>{
+      
+              this.store.genresList[key]=res.data.genres
+      
+              console.log(this.store.genresList[key])
+            })
+
+      }
+    },
+
   },
   created(){
-
-    axios.get('https://api.themoviedb.org/3/genre/movie/list?api_key=ad9879a0909d7fd71a9675386cdfd2cc')
-        .then(res=>{
-
-          this.store.genresList=res.data.genres
-
-          console.log(this.store.genresList)
-        })
+    this.getGenresLists()
   }
 }
 </script>

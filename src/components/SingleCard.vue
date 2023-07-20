@@ -8,8 +8,11 @@ export default {
         CountryFlag
     },
     props:{
-        singleElement:Object
+        singleElement:Object,
+        singleIndex:Number,
+        searchResultsArr:Array,
     },
+    emits:['got-genres'],
     data() {
         return {
             store,
@@ -30,7 +33,7 @@ export default {
             let location = null
 
             for (let key in this.store.searchResults) {
-                console.log(key)
+                
                 for(let index=0;index<this.store.searchResults[key].length;index++){
 
                     if(this.store.searchResults[key]==this.store.searchResults.movies && this.singleElement==this.store.searchResults[key][index]){
@@ -62,19 +65,38 @@ export default {
                 )
         },
         getGenres(){
+            this.genres=[]
+            for (const key in this.store.genresList) {
+               
+                for(let i = 0; i < this.store.genresList[key].length; i++){
+    
+                    for(let index = 0; index < this.singleElement.genre_ids.length; index++){
+    
+                        if(this.store.genresList[key][i].id==this.singleElement.genre_ids[index]){
 
-            for(let i = 0; i < this.store.genresList.length; i++){
+                            if(!this.genres.includes(this.store.genresList[key][i].name)){
 
-                for(let index = 0; index < this.singleElement.genre_ids.length; index++){
+                                this.genres.push(this.store.genresList[key][i].name)
 
-                    if(this.store.genresList[i].id==this.singleElement.genre_ids[index]){
-                        this.genres.push(this.store.genresList[i].name)
+                            }
+                        }
                     }
                 }
+                
             }
+        },
+        emitGenres(genres){
+
+            this.$emit("got-genres",genres)
+        },
+        
+        addTheGenres(){
+            
+           this.searchResultsArr[this.singleIndex].genres=[]
+           this.searchResultsArr[this.singleIndex].genres.push(...this.genres)
+            
+            
         }
-        
-        
         
     },
     computed:{
@@ -113,14 +135,24 @@ export default {
             }
 
             else return this.singleElement.original_language
-        }
-        
+        },
+        //     filterTheResults(elementGenres){
+        //         const genresArr=elementGenres
+        //         for (const key in this.store.searchResults) {
+        //             for(let i =0;i<this.store.searchResults[key].length;i++) {
+        //                 console.log('heyyyyyyyyyyyyyyyyyy',elementGenres)
+        //             }
+        //         }
+        // }
     },
     created(){
         this.getSingleElementCast()
+        this.getGenres()
+        this.addTheGenres()
+        console.log(this.singleElement.genres)
     },
     mounted(){
-        this.getGenres()
+       
 
     }
 }

@@ -19,7 +19,7 @@ export default {
 <template>
     <header>
 
-        <div class="container">
+        <div class="container-fluid">
 
             <div class="row flex-wrap justify-content-between align-items-center">
 
@@ -31,15 +31,36 @@ export default {
 
                 </div>
 
-                <div class="col-auto">
-    
-                    <form @submit.prevent="$emit('search')" action="">
-    
-                        <input v-model="store.searchText" type="search" name="search" id="">
-    
-                        <button type="submit">
-                            search
-                        </button>
+                <div class="col">
+                    
+                    <form class="row row-cols-3 justify-content-end" @submit.prevent="$emit('search')" action="">
+                        
+                        <div class="col-auto">
+                            <input v-model="store.searchText" class="form-control" type="search" name="search" id="">
+                        </div>
+
+                        <div class="col-auto">
+                            <select v-if="store.searchText.trim() != ''" v-model="store.searchGenre"  class="form-select" aria-label="Default select example">
+                                <option selected :value="null"></option>
+                                <option v-for="(singleGenreOption,i) in store.genresList.movie" :key="i"
+                                    :value=singleGenreOption.name>{{singleGenreOption.name}}</option>
+                                
+                                <option v-for="(singleGenreOption,i) in store.genresList.tv" :key="i"
+                                    :value=singleGenreOption.name>{{singleGenreOption.name}}</option>
+                                
+                            </select>
+                        </div>
+
+                    
+
+                        <div class="col-auto">
+                            <button type="submit">
+                                search
+                            </button>
+                        </div>
+                        
+
+
     
                     </form>
     

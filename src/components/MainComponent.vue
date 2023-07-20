@@ -14,6 +14,7 @@ export default {
         }
     },
     methods: {
+        
 
     }
 }
@@ -29,8 +30,8 @@ export default {
 
                 <div v-for="(singleMovie,i) in store.searchResults.movies" :key="i" class="col my-3">
 
-                    <singleCard  :singleElement="singleMovie" />
-
+                    <singleCard v-if="store.searchGenre==null || store.searchResults.movies[i].genres.includes(store.searchs)" :singleElement="singleMovie" :singleIndex="i" :searchResultsArr="store.searchResults.movies" />
+                    <!-- v-if="store.searchGenre!=null&&" -->
                 </div>
 
             </div>
@@ -41,7 +42,7 @@ export default {
                 
                 <div v-for="(singleSerie,i) in store.searchResults.tvSeries" :key="i" class="col my-3">
 
-                    <singleCard :singleElement="singleSerie"/> 
+                    <singleCard v-if="store.searchGenre==null || store.searchResults.tvSeries[i].genres.includes(store.searchGenre)" :singleElement="singleSerie" :singleIndex="i" :searchResultsArr="store.searchResults.tvSeries" /> 
                     
                 </div>
 
