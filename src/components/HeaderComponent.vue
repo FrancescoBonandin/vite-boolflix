@@ -21,32 +21,36 @@ export default {
 
         <div class="container">
 
-            <div class="row">
+            <div class="row flex-wrap justify-content-between align-items-center">
 
-                <div class="col">
+                <div class="col-auto">
 
+                    <h1 class="logo">
+                        BOOLFLIX
+                    </h1>
 
                 </div>
 
-            </div>
-
-            <div class="row">
-
-                <div class="col">
-
+                <div class="col-auto">
+    
                     <form @submit.prevent="$emit('search')" action="">
-
+    
                         <input v-model="store.searchText" type="search" name="search" id="">
-
+    
                         <button type="submit">
                             search
                         </button>
-
+    
                     </form>
-
+    
                 </div>
 
             </div>
+
+            
+
+
+            
 
         </div>
 
@@ -54,4 +58,16 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+
+header{
+    background-color: black;
+
+    .logo{
+        font-family:fantasy;
+        color: red;
+        text-shadow: 2px 2px 1px rgba(255, 255, 255, 1),-2px -2px 1px rgba(255, 255, 255, 1),0px 2px 1px rgba(255, 255, 255, 1),
+                     2px -2px 1px rgba(255, 255, 255, 1),-2px 2px 1px rgba(255, 255, 255, 1),0px -2px 1px rgba(255, 255, 255, 1);
+        letter-spacing: 3px;
+    }
+}
 </style>

@@ -47,10 +47,6 @@ export default {
             })
         },
 
-
-        convertToIso(){
-
-        }
     },
     computed:{
         imgPathPrefix(){
@@ -68,7 +64,7 @@ export default {
 
             <h2 v-if="store.searchResults.movies.length > 0">Movies</h2>
 
-            <div class="row row-cols-4 flex-wrap-wrap align-items-start">
+            <div class="row row-cols-4 flex-wrap align-items-start">
 
                 <div v-for="(singleMovie,i) in store.searchResults.movies" :key="i" class="col my-3">
 
@@ -80,9 +76,17 @@ export default {
 
                         <div class="card-body">
 
-                            <p>titolo: {{ singleMovie.title }} </p>
+                            <p v-if="singleMovie.title!=singleMovie.original_title">titolo:
+                                <span>
+                                    {{ singleMovie.title }}
+                                </span>
+                            </p>
     
-                            <p>titolo originale:{{ singleMovie.original_title }} </p>
+                            <p>titolo originale:
+                                <span>
+                                    {{ singleMovie.original_title }}
+                                </span>
+                            </p>
                             
                             <p>lingua:
     
@@ -105,6 +109,12 @@ export default {
                                 
                             </p>
 
+                            <p v-if="singleMovie.overview!=''">overview:
+                                <span>
+                                    {{singleMovie.overview}}
+                                </span>
+                            </p>
+
                         </div>
     
                         
@@ -116,7 +126,7 @@ export default {
 
             <h2 v-if="store.searchResults.tvSeries.length > 0">TV series</h2>
 
-            <div class="row row-cols-4 flex-wrap-wrap align-items-start">
+            <div class="row row-cols-4 flex-wrap align-items-start">
                 
                 <div v-for="(singleSerie,i) in store.searchResults.tvSeries" :key="i" class="col my-3">
 
@@ -128,13 +138,24 @@ export default {
 
                         <div class="card-body">
 
-                            <p>titolo: {{ singleSerie.name }} </p>
+                            <p v-if="singleSerie.title!=singleSerie.original_title">titolo: 
+                                <span>
+                                    {{ singleSerie.name }}
+                                </span>
+                            </p>
         
-                            <p>titolo originale:{{ singleSerie.original_name }} </p>
+                            <p>titolo originale:
+                                <span>
+                                    {{ singleSerie.original_name }}
+                                </span>
+                            </p>
                             
                             <p>lingua:
+
                                 <span v-if="singleSerie.original_language!=''">
+
                                     <CountryFlag :country="singleSerie.original_language=='en'? 'gb':singleSerie.original_language " size="small"/>
+
                                 </span>
         
                                 <span v-else>
@@ -142,6 +163,7 @@ export default {
                                     {{ singleSerie.original_language }}
         
                                 </span>
+
                             </p>
         
                             <p v-if="store.searchResults.movies.length > 0">voto: 
@@ -150,6 +172,12 @@ export default {
         
                                 <font-awesome-icon v-for="y in (5 - getStarVote(singleSerie))" icon="fa-regular fa-star" class="empty-star-color"  />
         
+                            </p>
+
+                            <p v-if="singleSerie.overview!=''">overview:
+                                <span>
+                                    {{singleSerie.overview}}
+                                </span>
                             </p>
 
                         </div>
@@ -167,14 +195,47 @@ export default {
 
 <style lang="scss" scoped>
 
+main{
+   background-color: rgba(90, 90, 90, 1);
+   h2{
+    color:red;
+   }
+}
+
 .card{
     border:solid 1px red;
+
+    position: relative;
     .card-img-top{
         width: 100%;
         border: solid 1px blue;
+
+
         img{
             width: 100%;
+            aspect-ratio: 257/385;
     
+        }
+    }
+    
+    .card-body{
+        position: absolute;
+        background-color: rgba($color: #000000, $alpha: 0.7);
+        width:100%;
+        height:100%;
+        display:none;
+        p{
+            color: red;
+            span{
+                color: white;
+            }
+        }
+    }
+    
+    &:hover{
+        .card-body{
+            display: block;
+
         }
     }
 }
