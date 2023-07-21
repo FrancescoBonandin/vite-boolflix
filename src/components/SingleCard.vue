@@ -36,11 +36,11 @@ export default {
                 
                 for(let index=0;index<this.store.searchResults[key].length;index++){
 
-                    if(this.store.searchResults[key]==this.store.searchResults.movies && this.singleElement==this.store.searchResults[key][index]){
+                    if(this.store.searchResults[key]==this.store.searchResults.movie && this.singleElement==this.store.searchResults[key][index]){
                         location = 'movie'
                     }
 
-                    else if(this.store.searchResults[key]==this.store.searchResults.tvSeries && this.singleElement==this.store.searchResults[key][index]){
+                    else if(this.store.searchResults[key]==this.store.searchResults.tv && this.singleElement==this.store.searchResults[key][index]){
                         location = 'tv'
                     }
                 }
@@ -54,7 +54,7 @@ export default {
                     this.cast.push(castArray[i].name)
                 }
                 
-                console.log(`cast${this.singleElement.id}`,res)
+                // console.log(`cast${this.singleElement.id}`,res)
                 }
                 )
                 .catch(err=>{
@@ -94,8 +94,7 @@ export default {
             
            this.searchResultsArr[this.singleIndex].genres=[]
            this.searchResultsArr[this.singleIndex].genres.push(...this.genres)
-            
-            
+
         }
         
     },
@@ -106,16 +105,12 @@ export default {
         },
         starVote(){
             
-            let stars = parseInt(this.singleElement.vote_average / 2)
-    
+            let stars = Math.ceil(this.singleElement.vote_average / 2)
+            stars
             if(stars >=0 && stars <=1){
                 stars=1
             }
-            else if(stars>4 && stars<=5){
-                stars=5
-            }
-            
-            
+         
             return stars
         },
         convertToIso(){
@@ -136,22 +131,15 @@ export default {
 
             else return this.singleElement.original_language
         },
-        //     filterTheResults(elementGenres){
-        //         const genresArr=elementGenres
-        //         for (const key in this.store.searchResults) {
-        //             for(let i =0;i<this.store.searchResults[key].length;i++) {
-        //                 console.log('heyyyyyyyyyyyyyyyyyy',elementGenres)
-        //             }
-        //         }
-        // }
+     
     },
     created(){
+    },
+    mounted(){
         this.getSingleElementCast()
         this.getGenres()
         this.addTheGenres()
         console.log(this.singleElement.genres)
-    },
-    mounted(){
        
 
     }
@@ -168,10 +156,6 @@ export default {
     </div>
 
     <div class="card-body">
-
-        <p>
-            {{ singleElement.id }}
-        </p>
 
         <p v-if="singleElement.title!=singleElement.original_title">titolo:
             <span>
@@ -220,7 +204,7 @@ export default {
             </span>
         </p>
 
-        <p v-if="store.searchResults.movies.length > 0">voto: 
+        <p v-if="store.searchResults.movie.length > 0">voto: 
 
             <font-awesome-icon v-for="x in starVote" icon="fa-solid fa-star" class="full-star-color" />
 

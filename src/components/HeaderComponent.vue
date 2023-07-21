@@ -10,8 +10,8 @@ export default {
         }
     },
     methods: {
-    
 
+        
     }
 }
 </script>
@@ -33,13 +33,12 @@ export default {
 
                 <div class="col">
                     
-                    <form class="row row-cols-3 justify-content-end" @submit.prevent="$emit('search')" action="">
-                        
+                    <form @submit.prevent="$emit('search')" class="row row-cols-3 justify-content-end"  action="">
                         <div class="col-auto">
                             <input v-model="store.searchText" class="form-control" type="search" name="search" id="">
                         </div>
 
-                        <div class="col-auto">
+                        <!-- <div class="col-auto">
                             <select v-if="store.searchText.trim() != ''" v-model="store.searchGenre"  class="form-select" aria-label="Default select example">
                                 <option selected :value="null"></option>
                                 <option v-for="(singleGenreOption,i) in store.genresList.movie" :key="i"
@@ -49,12 +48,27 @@ export default {
                                     :value=singleGenreOption.name>{{singleGenreOption.name}}</option>
                                 
                             </select>
-                        </div>
+                        </div> -->
 
+                        <div class="col-auto">
+                            
+                            <select   v-model="store.searchGenre" class="form-select" aria-label="Default select example">
+                                    
+                                <option selected :value="null"></option>
+
+                                <option v-for="(singleGenreOption,i) in store.genresList.movie" :key="i"
+                                    :value=singleGenreOption.id>{{singleGenreOption.name}}</option>
+                                
+                                <option v-for="(singleGenreOption,i) in store.genresList.tv" :key="i"
+                                    :value=singleGenreOption.id>{{singleGenreOption.name}}</option>
+                                
+                            </select>
+                          
+                        </div>
                     
 
                         <div class="col-auto">
-                            <button type="submit">
+                            <button  type="submit">
                                 search
                             </button>
                         </div>
@@ -69,10 +83,6 @@ export default {
             </div>
 
             
-
-
-            
-
         </div>
 
     </header>

@@ -24,32 +24,34 @@ export default {
     <main>
         <div class="container">
 
-            <h2 v-if="store.searchResults.movies.length > 0">Movies</h2>
+            <h2>movie</h2>
 
-            <div class="row row-cols-4 flex-wrap align-items-start">
+            <div v-if="store.searchResults.movie.length > 0" class="row row-cols-4 flex-wrap align-items-start">
 
-                <div v-for="(singleMovie,i) in store.searchResults.movies" :key="i" class="col my-3">
+                <div v-for="(singleMovie,i) in store.searchResults.movie" :key="i" class="col my-3">
 
-                    <singleCard v-if="store.searchGenre==null || store.searchResults.movies[i].genres.includes(store.searchs)" :singleElement="singleMovie" :singleIndex="i" :searchResultsArr="store.searchResults.movies" />
-                    <!-- v-if="store.searchGenre!=null&&" -->
+                    <singleCard   :singleElement="singleMovie" :singleIndex="i" :searchResultsArr="store.searchResults.movie" />
                 </div>
 
             </div>
 
-            <h2 v-if="store.searchResults.tvSeries.length > 0">TV series</h2>
+            <p v-else>no results found</p>
 
-            <div class="row row-cols-4 flex-wrap align-items-start">
+
+            <h2 >TV series</h2>
+
+            <div v-if="store.searchResults.tv.length > 0" class="row row-cols-4 flex-wrap align-items-start">
                 
-                <div v-for="(singleSerie,i) in store.searchResults.tvSeries" :key="i" class="col my-3">
+                <div v-for="(singleSerie,i) in store.searchResults.tv" :key="i" class="col my-3">
 
-                    <singleCard v-if="store.searchGenre==null || store.searchResults.tvSeries[i].genres.includes(store.searchGenre)" :singleElement="singleSerie" :singleIndex="i" :searchResultsArr="store.searchResults.tvSeries" /> 
-                    
+                    <singleCard  :singleElement="singleSerie" :singleIndex="i" :searchResultsArr="store.searchResults.tv" /> 
                 </div>
-
+                
             </div>
+
+            <p v-else>no results found</p>
 
         </div>
-
     </main>
 </template>
 
