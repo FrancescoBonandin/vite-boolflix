@@ -33,7 +33,7 @@ export default {
 
                 <div class="col">
                     
-                    <form @submit.prevent="$emit('search')" class="row row-cols-3 justify-content-end"  action="">
+                    <form @submit.prevent="$emit('search')" class="row row-cols-4 justify-content-end"  action="">
                         <div class="col-auto">
                             <input v-model="store.searchText" class="form-control" type="search" name="search" id="">
                         </div>
@@ -56,11 +56,12 @@ export default {
                                     
                                 <option selected :value="null"></option>
 
-                                <option v-for="(singleGenreOption,i) in store.genresList.movie" :key="i"
-                                    :value=singleGenreOption.id>{{singleGenreOption.name}}</option>
-                                
-                                <option v-for="(singleGenreOption,i) in store.genresList.tv" :key="i"
-                                    :value=singleGenreOption.id>{{singleGenreOption.name}}</option>
+                                <option v-for="(singleGenreOption,i) in store.fullGenreslist" :key="i"
+                                        :value=singleGenreOption.id>
+
+                                    {{singleGenreOption.name}}
+
+                                </option>
                                 
                             </select>
                           
@@ -68,11 +69,16 @@ export default {
                     
 
                         <div class="col-auto">
-                            <button  type="submit">
-                                search
+                            <button class="btn btn-danger"  type="submit">
+                                Search
                             </button>
                         </div>
                         
+                        <div class="col-auto">
+                            <button @click="$emit('back-to-trending')" class="btn btn-success" type="button">
+                                Back to Trending
+                            </button>
+                        </div>
 
 
     
@@ -100,5 +106,6 @@ header{
                      1px -1px 1px rgba(255, 255, 255, 1),-1px 1px 1px rgba(255, 255, 255, 1),0px -1px 1px rgba(255, 255, 255, 1);
         letter-spacing: 2px;
     }
+    
 }
 </style>

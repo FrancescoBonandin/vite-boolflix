@@ -14,9 +14,10 @@ export default {
         }
     },
     methods: {
-        
 
-    }
+       
+    },
+    
 }
 </script>
 
@@ -24,7 +25,7 @@ export default {
     <main>
         <div class="container">
 
-            <h2>movie</h2>
+            <h2>Movies</h2>
 
             <div v-if="store.searchResults.movie.length > 0" class="row row-cols-4 flex-wrap align-items-start">
 
@@ -63,12 +64,6 @@ main{
     color:red;
    }
 
-}
-
-.card{
-    border:solid 1px red;
-
-  
 }
 
 </style>

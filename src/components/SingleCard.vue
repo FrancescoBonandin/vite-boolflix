@@ -85,10 +85,6 @@ export default {
                 
             }
         },
-        emitGenres(genres){
-
-            this.$emit("got-genres",genres)
-        },
         
         addTheGenres(){
             

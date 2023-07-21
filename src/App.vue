@@ -19,6 +19,8 @@ export default {
   },
   methods: {
 
+
+    // **** funzione da rivedere perchè in teoria potrebbe funzionare ****
     // getResponse(){
     //   console.log('si si ')
 
@@ -236,23 +238,69 @@ export default {
 
       }
     },
-   
+    getFullGenresList(){
+
+      this.store.fullGenreslist.push(...this.store.genresList.movie)
+
+      this.store.genresList.tv.forEach(element=>{
+
+        if(!this.store.fullGenreslist.includes(element)){
+
+          this.store.fullGenreslist.push(element)
+          
+        }
+
+      })
+      console.log(this.store.fullGenreslist)
+    },
+    getTrending(){
+
+      for (const key in this.store.searchResults) {
+
+          this.store.searchResults[key]=[]
+          
+          axios.get(`https://api.themoviedb.org/3/trending/${key}/week`,{
+              params:{
+                  api_key:this.store.apiKey,
+                  language:'it',
+              
+              } 
+          }
+          )
+
+          .then(res=>{
+
+              for(let i = 0; i<8;i++){
+
+                  this.store.searchResults[key].push(res.data.results[i])
+              }
+
+          }
+          )
+      }
+
+    }
 
   },
   created(){
     this.getGenresLists()
-  }
+  },
+  mounted(){
+    this.getFullGenresList()
+    this.getTrending()
+  },
+  
 }
 </script>
 
 <template>
   <div >
     
-    <HeaderComponent @search="getResponse()" @perform-genre-search="filterResults" />
+    <HeaderComponent @search="getResponse()" @back-to-trending="getTrending()" />
     
-    <MainComponent  />
+    <MainComponent/>
   
-    <FooterComponent />
+    <FooterComponent/>
     
   </div>
 </template>

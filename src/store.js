@@ -8,10 +8,8 @@ export const store = reactive({
         movie:[],
         tv:[]
     },
-    popular:{
-        movie:[],
-        tv:[]
-    },
+
+    fullGenreslist:[],
 
     searchResults:{
         movie:[],
