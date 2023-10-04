@@ -135,7 +135,6 @@ export default {
         this.getSingleElementCast()
         this.getGenres()
         this.addTheGenres()
-        console.log(this.singleElement.genres)
        
 
     }

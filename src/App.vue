@@ -1,7 +1,6 @@
 <script>
 import HeaderComponent from "./components/HeaderComponent.vue";
 import MainComponent from "./components/MainComponent.vue";
-import FooterComponent from "./components/FooterComponent.vue";
 import axios from 'axios'
 import {store} from './store.js'
 
@@ -10,7 +9,6 @@ export default {
   components: {
     HeaderComponent,
     MainComponent,
-    FooterComponent,
   },
   data() {
     return {
@@ -234,6 +232,8 @@ export default {
               this.store.genresList[key]=res.data.genres
       
               console.log(this.store.genresList[key])
+
+              this.getFullGenresList()
             })
 
       }
@@ -283,10 +283,10 @@ export default {
 
   },
   created(){
-    this.getGenresLists()
   },
   mounted(){
-    this.getFullGenresList()
+    this.getGenresLists()
+    // this.getFullGenresList()
     this.getTrending()
   },
   
@@ -299,9 +299,7 @@ export default {
     <HeaderComponent @search="getResponse()" @back-to-trending="getTrending()" />
     
     <MainComponent/>
-  
-    <FooterComponent/>
-    
+      
   </div>
 </template>
 

@@ -75,7 +75,7 @@ export default {
                         </div>
                         
                         <div class="col-auto">
-                            <button @click="$emit('back-to-trending')" class="btn btn-success" type="button">
+                            <button type="reset" @click="$emit('back-to-trending')" class="btn btn-success" >
                                 Back to Trending
                             </button>
                         </div>
