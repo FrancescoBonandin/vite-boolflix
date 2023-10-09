@@ -19,7 +19,7 @@ export default {
 <template>
     <header>
 
-        <div class="container-fluid">
+        <div class="container">
 
             <div class="row flex-wrap justify-content-between align-items-center">
 

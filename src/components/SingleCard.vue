@@ -144,7 +144,7 @@ export default {
 
 <template>
 
-<div class="card">
+<div class="card me-5">
 
     <div class="card-img-top">
         <img :src="singleElement.poster_path==null ? getImagePath():`${imgPathPrefix}${singleElement.poster_path}`"  alt="failed to load">

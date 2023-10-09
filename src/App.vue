@@ -305,8 +305,13 @@ export default {
 
 <style lang="scss">
 @use "assets/scss/main" as *;
+
+
 body{
   background-color: rgba(15, 15, 15, 1.0);
   min-height: 100vh;
+
+
 }
+
 </style>
